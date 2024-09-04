@@ -1,0 +1,51 @@
+{
+  "name": "react-native-sentry-mo",
+  "homepage": "https://github.com/getsentry/react-native-sentry",
+  "repository": "https://github.com/getsentry/react-native-sentry",
+  "version": "0.0.1",
+  "description": "Official Sentry SDK for react-native",
+  "typings": "lib/Sentry.d.ts",
+  "types": "./lib/Sentry.d.ts",
+  "typescript": {
+    "definition": "lib/Sentry.d.ts"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:typescript": "node_modules/typescript/bin/tsc --noImplicitAny --allowJs typescript/Sentry-tests.ts"
+  },
+  "keywords": [
+    "react-native",
+    "sentry",
+    "crashreporting",
+    "ios"
+  ],
+  "author": "yz",
+  "license": "MIT",
+  "peerDependencies": {
+    "react-native": ">=0.56.0"
+  },
+  "dependencies": {
+    "@sentry/wizard": "^0.13.0",
+    "raven-js": "^3.27.1"
+  },
+  "rnpm": {
+    "commands": {
+      "postlink": "node node_modules/@sentry/wizard/dist/bin.js -i reactNative -p ios android",
+      "postunlink": "node node_modules/@sentry/wizard/dist/bin.js -i reactNative -p ios android --uninstall"
+    },
+    "android": {
+      "packageInstance": "new RNSentryPackage()"
+    },
+    "ios": {
+      "sharedLibraries": [
+        "libz"
+      ]
+    }
+  },
+  "devDependencies": {
+    "prettier": "^1.12.1",
+    "replace-in-file": "^3.4.0",
+    "typescript": "^2.8.3"
+  }
+}
